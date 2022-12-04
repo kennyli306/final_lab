@@ -14,25 +14,14 @@ class BShip {
 		BShip(int n = 10);
 		~BShip();
       void PrintBoard();
+		void SetShips(int amt, char ship, char player);
+		int GetInput(char c);
+		int GetSize(char ship);
+		bool PlaceShip(int x, int y, int dir, char ship);
    private:
 		std::vector<std::vector<char>> pBoard;
-
-		struct Destroyer {
-			char name = 'D';
-			int size = 2;
-		};
-		struct Submarine {
-			char name = 'S';
-			int size = 3;
-		};
-		struct Battleship {
-			char name = 'B';
-			int size = 4;
-		};
-		struct Carrier {
-			char name = 'C';
-			int size = 5;
-		};
+		int pH = 0;
+		int cH = 0;
 };
 
 #endif

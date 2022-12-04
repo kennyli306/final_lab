@@ -7,11 +7,16 @@ Final lab log sheet
 Kenny Li
 11/30
    11:20 - 12:30
-      Added initial functions, some variables, and PrintBoard();
+12/3
+   9:30 - 11:30
 
 
 Andy Li 
 11/30
-   11:20 - 
+   11:20 - 12:30
+12/2
+   7:00 - 7:30
+12/3
+   8:00 - 9:15
 
 
