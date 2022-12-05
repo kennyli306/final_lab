@@ -3,15 +3,15 @@
    7 Dec 2022 */
 
 #include "battleship.hpp"
-#include <iostream>
+#include <iomanip>
 using namespace std;
 
 BShip::BShip(int n) {
-   pBoard.resize(n);
+   board.resize(n);
    for (int i = 0; i < n; i++) {
-      pBoard[i].resize(n);
+      board[i].resize(n);
       for (int j = 0; j < n; j++)
-         pBoard[i][j] = '~';
+         board[i][j] = '~';
    }
 }
 BShip::~BShip() {
@@ -19,51 +19,93 @@ BShip::~BShip() {
 }
 
 void BShip::PrintBoard() {
-   for (int i = 0; i < (int)pBoard.size(); i++) {
-      for (int j = 0; j < (int)pBoard.size(); j++)
-         cout << "| " << pBoard[i][j] << ' ';
+   int n = board.size();
+   
+   for (int i = 0; i < 4*n+6; i++)
+      cout << '~';
+   cout << endl;
+
+   cout << "         ";
+   for (int j = 0; j < n; j++)
+      cout << setw(2) << j << ' ';
+   cout << endl << endl;
+
+   for (int i = 0; i < n; i++) {
+      cout << "         ";
+      for (int j = 0; j < n; j++)
+         cout << setw(2) << board[i][j] << ' ';
       
-      cout << '|' << endl;
+      cout << "   " << i << ' ' << endl;
    }
+
+   for (int i = 0; i < 4*n+6; i++)
+      cout << '~';
+   cout << endl;
 }
 
 void BShip::SetShips(int amt, char ship, char player) {
-   int x, y, dir;
+   int x, y;
+   char dir;
    if (player == 'P') {
       while (amt != 0) {
-         if (ship == 'D') cout << "Destroyer";
-         else if (ship == 'S') cout << "Submarine";
-         else if (ship == 'B') cout << "Battleship";
-         else if (ship == 'C') cout << "Carrier";
-         cout << endl;
+         if (ship == 'D') cout << "Destroyer:   ";
+         else if (ship == 'S') cout << "Submarine:   ";
+         else if (ship == 'B') cout << "Battleship:   ";
+         else if (ship == 'C') cout << "Carrier:   ";
 
-         x = GetInput('x');
-         y = GetInput('y');
-         dir = GetInput('h');
-         if (PlaceShip(x, y, dir, ship)) {
-            amt--;
-            pH += GetSize(ship);
+         cout << "PLACE [x] [y] [h or v]: ";
+         if (!(cin >> x >> y >> dir) || !(dir == 'v' || dir == 'h')) {
+            cout << endl << "USAGE:      (int)[x]       (int)[y]       (char)[(h)orizontal || (v)ertical]" << endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+            continue;
          }
-         else
-            cout << "Invalid Spot" << endl;
-         PrintBoard();
+         
+         if (PlaceShip(x, y, dir, ship)) {
+            PrintBoard();
+            amt--;
+            Health += GetSize(ship);
+         }
+         else {
+            PrintBoard();
+            cout << endl << "Invalid Spot" << endl;
+         }
       }
    }
 }
 
-int BShip::GetInput(char c) {
-   int out;
+void BShip::Game() {
+   while (Health) {
+      Torpedo();
+      PrintBoard();
+   }
+}
+
+void BShip::Torpedo() {
+   int x, n = board.size();
+
    while (true) {
-      cout << "Input " << c << ": ";
-      if (cin >> out) return out;
+      cout << "Torpedo: ";
+      if (cin >> x && x >= 0 && x < n) 
+         break;
       else {
-         cout << "Bad Input" << endl;
+         cout << "Invalid Input" << endl
+              << "Usage: (int)[x]" << endl;
          cin.clear();
          cin.ignore(1000, '\n');
       }
    }
 
-   return out;
+   for (int i = 0; i < n; i++) {
+      if (board[n-i-1][x] == '~')
+         board[n-i-1][x] = '^';
+      else if (CheckHit(x, n-i-1)) {
+         board[n-i-1][x] = 'X';
+         Health--;
+         break;
+      }
+      else break;
+   }
 }
 
 int BShip::GetSize(char ship) {
@@ -74,24 +116,38 @@ int BShip::GetSize(char ship) {
    else return -1;
 }
 
-bool BShip::PlaceShip(int x, int y, int dir, char ship) {
+bool BShip::PlaceShip(int x, int y, char dir, char ship) {
    int i, *p, *q, *s;
-   int size = GetSize(ship);
-   if (dir) {
+   int size = GetSize(ship), n = board.size();
+   if (dir == 'h') {
       p = &y;
       q = &i;
       s = &x;
    } 
-   else {
+   else if (dir == 'v') {
       p = &i;
       q = &x;
       s = &y;
-   }
+   } else return false;
+
+   if (x >= n || y >= n || x < 0 || y < 0) return false;
    
    for (i = *s; i < *s + size; i++) 
-      if (pBoard[*p][*q] != '~') return false;
+      if (board[*p][*q] != '~') return false;
 
    for (i = *s; i < *s + size; i++)
-      pBoard[*p][*q] = ship;
+      board[*p][*q] = ship;
    return true;
+}
+
+bool BShip::CheckHit(int x, int y) {
+   switch(board[y][x]) {
+      case 'D':
+      case 'S':
+      case 'B':
+      case 'C':
+         return true;
+   }
+
+   return false;
 }

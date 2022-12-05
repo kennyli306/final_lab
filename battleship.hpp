@@ -7,21 +7,23 @@
 
 #include <iostream>
 #include <vector>
-#include <map>
-
+/* Implement a hit
+	Then Implement different types of weapons
+	Also implement a randomizer for AI */
 class BShip {
 	public:
-		BShip(int n = 10);
+		BShip(int n = 15);
 		~BShip();
       void PrintBoard();
 		void SetShips(int amt, char ship, char player);
-		int GetInput(char c);
+		void Game();
+		void Torpedo();
 		int GetSize(char ship);
-		bool PlaceShip(int x, int y, int dir, char ship);
+		bool PlaceShip(int x, int y, char dir, char ship);
+		bool CheckHit(int x, int y);
    private:
-		std::vector<std::vector<char>> pBoard;
-		int pH = 0;
-		int cH = 0;
+		std::vector<std::vector<char>> board;
+		int Health = 0;
 };
 
 #endif
