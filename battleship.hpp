@@ -7,32 +7,33 @@
 
 #include <iostream>
 #include <vector>
-#include <map>
-
+/* Implement a hit
+	Then Implement different types of weapons
+	Also implement a randomizer for AI */
 class BShip {
 	public:
-		BShip(int n = 10);
-		~BShip();
-      void PrintBoard();
-   private:
-		std::vector<std::vector<char>> pBoard;
+		/* Main game functions */
+		BShip(int n = 15);
+      void PrintBoard(std::vector<std::vector<char>> b);
+		void SetShips(int amt, char ship, char player);
+		void Game();
 
-		struct Destroyer {
-			char name = 'D';
-			int size = 2;
-		};
-		struct Submarine {
-			char name = 'S';
-			int size = 3;
-		};
-		struct Battleship {
-			char name = 'B';
-			int size = 4;
-		};
-		struct Carrier {
-			char name = 'C';
-			int size = 5;
-		};
+		/*Weapon functions */
+		void Torpedo();
+		void Barrage();
+		void Strike();
+
+		/* Helper functions*/
+		void XPlode(int x, int y, int pX, int pY);
+		int GetSize(char ship);
+		bool PlaceShip(int x, int y, char dir, char ship);
+		bool CheckHit(int x, int y);
+   private:
+		/* board is the "behind the scene" that shows all ships 
+			display is only intended for the player and shows it as it appears. */
+		std::vector<std::vector<char>> board;
+		std::vector<std::vector<char>> display;
+		int Health = 0;
 };
 
 #endif
