@@ -1,0 +1,34 @@
+Kenny Li
+Andy Li
+
+Things that did not go well
+    One things that we struggled with was writing our code in a way so that we could use it for future use.  For example
+    the function SetShip had to be written in a way so that would could use it later on when were started placing the 
+    ships onto our grid.
+
+    When were brainstorming on how we want to make a unique version of the game battleship,  we knew we want to add special
+    weapons but brainstorming ideas for the weapons took a good amount of time because we were indecisive.
+    In the end we decided that we were going to give the player a arsenal of weapons and no ships and the player would try to 
+    sink as many ships as possible on the other grid.  The weapons we end up giving the player was Torpedo, Barrage, and Strike.
+    Throughout the lab, we kept changing our idea of how to we wanted to make the our battleship game.
+
+Things that went well
+    Things that went well include using vectors made that made coding the project easier.  If we had to use a different data 
+    structure, we believe we would have more problems trying to use it.  Getting the board set up and displayed was pretty easy.
+
+    At first we want to try to make a PVE version of battleship where the player would play against a AI or computer, but after debating 
+    on if we want to keep this idea, we ended up switching to have the player trying to sink all the ships in the least amount of moves possible.  
+    After the switch it became easier as we did not have to implement a computer to play against the player.   
+
+    We think the use of GitHub made our teamwork and coding as a group way easier. Trying to learn GitHub at first was a bit difficult but after
+    we got used to it, it was very easy to use. 
+
+Things that we learned completing this lab
+    One thing that I that we learned more about during this project was the use of recursion.  We used recursion for the "Xplode" function.
+    The way we used recursion for the "Xplode" function was by making the explosion expand outwards and checking if the next position 
+    is part of a ship that is alive.  Once it reaches a part where the there is no more ship or the it hits the part of the ship that is already
+    destroyed, it will stop.
+
+Why we should get full points
+    We believe that we should get the full points because we created a unique version of the classic game of battleship and we found ways to 
+    implement it into our project.  We implement our version of battleship using things we learned in class such as, vectors and recursion.
