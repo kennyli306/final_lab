@@ -7,22 +7,33 @@ Final lab log sheet
 Kenny Li
 11/30
    11:20 - 12:30
+      Created and set up initial functions. 
 12/3
    9:30 - 11:30
+      Completed set ship, place ship, check hit, and torpedo.
 12/5
    3:00 - 6:20
+      Completed Torpedo, Barrage, and much of Game. Also redesigned some of the function to achieve new goal.
+      Integrated the display for all the functions.
 12/8
    4:00 - 7:00
+      Completed Strike, added comment, and done some other finishing up.
 
 
 Andy Li 
 11/30
-   11:20 - 1:00
+   11:15 - 1:00 
+      Brainstorming ideas on how what we wanted to add. 
+      Got GitHub setup.
 12/2
-   7:00 - 7:30
+   6:15 - 7:30
+      Completed constructor, print, and get size.
 12/3
-   8:00 - 9:15
+   8:00 - 9:30
+      Started to add in a display.  Discussed redesigning the project.
+      Began work on write up.
 12/8
-   8:30 - 9:50
+   8:30 - 10:00
+      Finished working on write up and cleaning up some parts.
 
 

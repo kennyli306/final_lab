@@ -27,7 +27,7 @@ Things that we learned completing this lab
     One thing that I that we learned more about during this project was the use of recursion.  We used recursion for the "Xplode" function.
     The way we used recursion for the "Xplode" function was by making the explosion expand outwards and checking if the next position 
     is part of a ship that is alive.  Once it reaches a part where the there is no more ship or the it hits the part of the ship that is already
-    destroyed, it will stop.
+    destroyed, it will stop.  We learned the importants setting up code to be used in the future.  
 
 Why we should get full points
     We believe that we should get the full points because we created a unique version of the classic game of battleship and we found ways to 
